@@ -131,7 +131,7 @@ impl Route {
         // Place the name in the pattern for each pattern.
         // Remember each name found.
         // Remember how many are found and required (we are going to say all for now)
-        let compiled_pattern = re.replace_all(&pattern, |captures: &Captures| {
+        let compiled_pattern = re.replace_all(&pattern, |captures: &Captures<'_>| {
             let expected_type = captures.name("type").unwrap().as_str();
             let name = captures.name("name").unwrap().as_str();
 
@@ -165,7 +165,7 @@ impl Route {
     /// Saves pattern matches found during `applies_to_request`
     /// to the `parsedPathParameters` map in the struct.
     /// 
-    fn save_pattern_matches(&mut self, captures: Captures) {
+    fn save_pattern_matches(&mut self, captures: Captures<'_>) {
         let mut parsed = HashMap::new();
 
         for group_name in self.match_names.clone() {
