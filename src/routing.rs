@@ -120,7 +120,7 @@ impl Route {
     /// If these do not support your use case, you are able to put your own named groups or regex
     /// expressions. This expressions are all passed into the view as key word arguments
     /// in views implemented in python.
-    /// 
+    ///
     pub fn new(pattern: &str, view: &str, methods: Option<Vec<&str>>) -> Route {
         // Scan pattern for < variable_name : word >
         // Look up a pattern for word.
@@ -164,7 +164,7 @@ impl Route {
 
     /// Saves pattern matches found during `applies_to_request`
     /// to the `parsedPathParameters` map in the struct.
-    /// 
+    ///
     fn save_pattern_matches(&mut self, captures: Captures<'_>) {
         let mut parsed = HashMap::new();
 
@@ -179,7 +179,7 @@ impl Route {
     /// Checks whether or a request is to be handled by
     /// this route. Returns true if request is handled by this
     /// route; false otherwise.
-    /// 
+    ///
     pub fn applies_to_request(&mut self, request: &Request) -> bool {
         let re = Regex::new(&self.compiled_pattern).unwrap();
         match re.captures(&request.path) {
@@ -201,7 +201,7 @@ impl Route {
 
     /// Calls into the python view and calls the render function appropriate
     /// for the method and get its response.
-    /// 
+    ///
     pub fn to_response(&self, request: &Request) -> Response {
         let view = View::new(&self.view);
         return view.get_response(request, &self.parsed_path_parameters);

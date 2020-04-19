@@ -8,3 +8,5 @@ edition = "2018"
 
 [dependencies]
 regex = "1"
+tera = "1"
+config = "0.9"
