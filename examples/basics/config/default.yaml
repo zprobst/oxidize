@@ -1,0 +1,9 @@
+routing:
+  routes: 
+    - path: /
+      view: app.view_home
+          
+templates:
+  directory: "templates"
+  # Or use glob; in this case these two are equivalent.
+  # glob: "templates/**/*.html"
